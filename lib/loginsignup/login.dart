@@ -32,16 +32,23 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
 
       ),
       new TextFormField(decoration: InputDecoration(labelText: 'Password'),
-
       ),
+      SizedBox(height: 10.0,),
+    ];
+  }
+  List<Widget> createButtons(){
+    return [
+      new RaisedButton(child: Text('Login',style: TextStyle(fontSize: 18) , ) , color: Colors.blue ,onPressed: (){
 
+      }
+      )
     ];
   }
   Widget logo(){
     return new Hero(
       child: new CircleAvatar(
         backgroundColor: Colors.white,
-        child: Image.asset('assets/logo.png'),
+        child: Image.asset('images/logo.png'),
       ),
     );
   }
