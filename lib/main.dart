@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       title: "BlogoMo",
       home: LoginRegisterPage(),
       theme: new ThemeData(
-        primarySwatch: Colors.blue.shade400,
+        primarySwatch: Colors.blue
       ),
     );
   }

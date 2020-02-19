@@ -12,7 +12,37 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       appBar: new AppBar(
         title: new Text('Login'),
       ),
-      
+      body: Container(
+        margin: EdgeInsets.all(15.0),
+        child: new Form(child: new Column(
+          children: <Widget>[
+
+          ],
+        )),
+      ),
+    );
+  }
+
+  List<Widget> createInputs(){
+    return [
+          SizedBox(height: 15,),
+      logo(),
+      SizedBox(height: 10.0,),
+      new TextFormField(decoration: InputDecoration(labelText: 'Email'),
+
+      ),
+      new TextFormField(decoration: InputDecoration(labelText: 'Password'),
+
+      ),
+
+    ];
+  }
+  Widget logo(){
+    return new Hero(
+      child: new CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Image.asset('assets/logo.png'),
+      ),
     );
   }
 }
