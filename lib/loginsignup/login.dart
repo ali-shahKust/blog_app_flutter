@@ -34,7 +34,8 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
           SizedBox(height: 15,),
       logo(),
       SizedBox(height: 25.0,),
-      new TextFormField(decoration: InputDecoration(border: new OutlineInputBorder(
+      new TextFormField(keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(border: new OutlineInputBorder(
     borderRadius: const BorderRadius.all(
     const Radius.circular(10.0),
     ),) ,labelText: 'Email' ),
@@ -42,7 +43,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
 
       SizedBox(height: 15.0,),
-      new TextFormField(decoration: InputDecoration(border: new OutlineInputBorder(
+      new TextFormField(obscureText: true,decoration: InputDecoration(border: new OutlineInputBorder(
     borderRadius: const BorderRadius.all(
     const Radius.circular(10.0),
     )), labelText: 'Password'),
@@ -62,7 +63,9 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
       new FlatButton(child: Text('No Account Click here?',style: TextStyle(fontSize: 18) ,
       )
-          ,onPressed: RegisterActivity
+          ,onPressed:(){
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignupPage()));
+          }
       ),
     ];
   }
@@ -78,8 +81,6 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
   void validateUser(){
 
   }
-  void RegisterActivity(){
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignupPage()));
-  }
+
 
 }
