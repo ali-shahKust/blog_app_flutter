@@ -1,11 +1,7 @@
+import 'package:blog_app_flutter/loginsignup/signup.dart';
 import 'package:flutter/material.dart';
 
 class LoginRegisterPage extends StatefulWidget {
-
-  void validateUsers(){
-    
-  }
-
   @override
   _LoginRegisterPageState createState() => _LoginRegisterPageState();
 }
@@ -79,6 +75,13 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         child: Image.asset('images/logo.png'),
       ),
     );
+  }
+
+  void validateUser(){
+
+  }
+  void RegisterActivity(){
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SignupPage()));
   }
 
 }
