@@ -2,6 +2,7 @@ import 'package:blog_app_flutter/loginsignup/signup.dart';
 import 'package:flutter/material.dart';
 
 class LoginRegisterPage extends StatefulWidget {
+
   @override
   _LoginRegisterPageState createState() => _LoginRegisterPageState();
 }
@@ -32,7 +33,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     return [
           SizedBox(height: 15,),
       logo(),
-      SizedBox(height: 10.0,),
+      SizedBox(height: 25.0,),
       new TextFormField(decoration: InputDecoration(border: new OutlineInputBorder(
     borderRadius: const BorderRadius.all(
     const Radius.circular(10.0),
@@ -61,9 +62,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
       new FlatButton(child: Text('No Account Click here?',style: TextStyle(fontSize: 18) ,
       )
-          ,onPressed: (){
-
-          }
+          ,onPressed: RegisterActivity
       ),
     ];
   }
@@ -76,7 +75,6 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
     );
   }
-
   void validateUser(){
 
   }
