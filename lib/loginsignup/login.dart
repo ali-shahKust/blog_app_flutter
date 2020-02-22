@@ -7,7 +7,14 @@ class LoginRegisterPage extends StatefulWidget {
   _LoginRegisterPageState createState() => _LoginRegisterPageState();
 }
 
+
 class _LoginRegisterPageState extends State<LoginRegisterPage> {
+
+  final formkey = new GlobalKey<FormState>();
+
+  String email = "";
+  String pass = "";
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -19,7 +26,9 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         margin: EdgeInsets.all(15.0),
         child: ListView(
          children: <Widget>[
-            new Form(child: new Column(
+            new Form(
+              key: formkey,
+                child: new Column(
              crossAxisAlignment: CrossAxisAlignment.stretch,
              children: createInputs() + createButtons(),
            )),
@@ -29,6 +38,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     );
   }
 
+  //Input Text Fields Design
   List<Widget> createInputs(){
     return [
           SizedBox(height: 15,),
@@ -38,7 +48,15 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         decoration: InputDecoration(border: new OutlineInputBorder(
     borderRadius: const BorderRadius.all(
     const Radius.circular(10.0),
-    ),) ,labelText: 'Email' ),
+    ),
+        )
+            ,labelText: 'Email' ),
+        validator: (value){
+        return value.isEmpty ? 'Email is Required' : null ;
+        },
+        onSaved: (value){
+        return email = value;
+        },
 
       ),
 
@@ -47,19 +65,25 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     borderRadius: const BorderRadius.all(
     const Radius.circular(10.0),
     )), labelText: 'Password'),
+        validator: (value){
+
+          return value.isEmpty ? 'Password is Required' : null ;
+        },
+        onSaved: (value){
+          return pass = value;
+        },
       ),
       SizedBox(height: 10.0,),
     ];
   }
+  //Button design
   List<Widget> createButtons(){
     return [
       new RaisedButton( shape: new RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
           side: BorderSide(color: Colors.blue)),
           child: Text('Login',style: TextStyle(fontSize: 18, color: Colors.white)  ,
       )  , color: Colors.blue
-          ,onPressed: (){
-
-          }
+          ,onPressed: validateUser
       ),
       new FlatButton(child: Text('No Account Click here?',style: TextStyle(fontSize: 18) ,
       )
@@ -69,6 +93,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
     ];
   }
+  //Infusible Coder Logo
   Widget logo(){
     return new Hero(
       tag: 'hero',
@@ -78,8 +103,17 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       ),
     );
   }
-  void validateUser(){
 
+  //Method to check User
+  bool validateUser(){
+final form = formkey.currentState;
+if(form.validate()){
+  form.save();
+  return true;
+}
+else{
+  return false;
+}
   }
 
 
