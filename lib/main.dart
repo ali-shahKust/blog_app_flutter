@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'homepage/homepage.dart';
 import 'loginsignup/login.dart';
 import 'loginsignup/signup.dart';
 
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "BlogoMo",
-      home: LoginRegisterPage(),
+      home: SignupPage(),
       theme: new ThemeData(
         primarySwatch: Colors.blue
       ),
