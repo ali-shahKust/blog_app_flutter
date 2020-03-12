@@ -21,8 +21,8 @@ class _HomePageLoaderState extends State<HomePageLoader> {
         height: 50,
         backgroundColor: Colors.blueAccent,
         items: <Widget>[
-          Icon(Icons.list, size: 30),
           Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
           Icon(Icons.exit_to_app, size: 30),
         ],
         onTap: (index) {

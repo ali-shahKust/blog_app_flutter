@@ -1,4 +1,7 @@
+import 'package:blog_app_flutter/homepage/homepage.dart';
+import 'package:blog_app_flutter/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:blog_app_flutter/loginsignup/login.dart';
 
@@ -12,7 +15,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   String _email, _password, _name;
   final databaseReference = Firestore.instance;
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
   final _namecontroller = TextEditingController();
@@ -189,7 +192,9 @@ class _SignupPageState extends State<SignupPage> {
           ),
           color: Colors.blue,
           onPressed: () {
-            //_SignUp();
+            _SignUp();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePageLoader()));
+
           }),
       new FlatButton(
           child: Text(
@@ -209,4 +214,34 @@ class _SignupPageState extends State<SignupPage> {
       child: Image.asset('images/logo.png'),
     );
   }
+  void _SignUp() async {
+    _email = _emailcontroller.text;
+    _password = _passwordcontroller.text;
+
+    try{
+      final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      ))
+          .user;
+
+      String mUid = (await FirebaseAuth.instance.currentUser()).uid;
+
+      await databaseReference.collection('Users').document(mUid).setData({
+        'user_uid': mUid,
+        'user_name': _namecontroller.text,
+        'user_email':_emailcontroller.text,
+        'user_phone': _phonecontroller.text,
+        'user_profile': '',
+      });
+
+    }
+    catch(e){
+    print(e.message);
+    }
+
+
+  }
+
 }
+
