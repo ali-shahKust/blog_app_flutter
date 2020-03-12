@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "BlogoMo",
-      home: SignupPage(),
+      home: LoginRegisterPage(),
       theme: new ThemeData(
         primarySwatch: Colors.blue
       ),

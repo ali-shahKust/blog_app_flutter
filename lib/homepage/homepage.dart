@@ -1,6 +1,11 @@
+import 'package:blog_app_flutter/Profile_setting.dart';
+import 'package:blog_app_flutter/all_users.dart';
+import 'package:blog_app_flutter/loginsignup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
+import '../newFeed.dart';
 class HomePageLoader extends StatefulWidget {
   @override
   _HomePageLoaderState createState() => _HomePageLoaderState();
@@ -9,6 +14,7 @@ class HomePageLoader extends StatefulWidget {
 class _HomePageLoaderState extends State<HomePageLoader> {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
+  List<Object> _tabs = [News_feed(),All_Users(),Profile_setting()];
   @override
   Widget build(BuildContext context) {
 
@@ -23,14 +29,15 @@ class _HomePageLoaderState extends State<HomePageLoader> {
         items: <Widget>[
           Icon(Icons.add, size: 30),
           Icon(Icons.list, size: 30),
-          Icon(Icons.exit_to_app, size: 30),
+          Icon(Icons.supervised_user_circle, size: 30),
         ],
         onTap: (index) {
-          //Handle button tap
+          setState(() {
+            _page = index;
+          });
         },
       ),
-        body: Container(
-         
-        ));
+        body: _tabs[_page]
+      );
   }
 }

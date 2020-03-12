@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:blog_app_flutter/loginsignup/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 import '../constant.dart';
 
@@ -21,9 +23,11 @@ class _SignupPageState extends State<SignupPage> {
   final _namecontroller = TextEditingController();
   final _phonecontroller = TextEditingController();
 
-
+  ProgressDialog pr;
   @override
   Widget build(BuildContext context) {
+
+    pr = new ProgressDialog(context);
     return new Scaffold(
       appBar: new AppBar(
         title: Text('Register Page'),
@@ -219,6 +223,21 @@ class _SignupPageState extends State<SignupPage> {
     _password = _passwordcontroller.text;
 
     try{
+      pr.style(
+          message: 'Please Wait...',
+          borderRadius: 10.0,
+          backgroundColor: Colors.white,
+          progressWidget: CircularProgressIndicator(),
+          elevation: 10.0,
+          insetAnimCurve: Curves.easeInOut,
+          progress: 0.0,
+          maxProgress: 100.0,
+          progressTextStyle: TextStyle(
+              color: Colors.black, fontSize: 13.0, fontWeight: FontWeight.w400),
+          messageTextStyle: TextStyle(
+              color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600)
+      );
+      await pr.show();
       final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
         email: _email,
         password: _password,
@@ -234,10 +253,31 @@ class _SignupPageState extends State<SignupPage> {
         'user_phone': _phonecontroller.text,
         'user_profile': '',
       });
-
+      pr.hide().then((isHidden) {
+        print(isHidden);
+      });
+      Fluttertoast.showToast(
+          msg: "Your Account Has Been Registered",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: Colors.grey.shade400,
+          textColor: Colors.black45,
+          fontSize: 16.0
+      );
     }
     catch(e){
     print(e.message);
+    Fluttertoast.showToast(
+        msg: e.message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.grey.shade400,
+        textColor: Colors.black45,
+        fontSize: 16.0
+    );
+
     }
 
 
