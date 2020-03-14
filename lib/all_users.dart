@@ -1,5 +1,6 @@
 import 'package:blog_app_flutter/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class All_Users extends StatefulWidget {
@@ -28,6 +29,7 @@ class _All_UsersState extends State<All_Users> {
           width: MediaQuery.of(context).size.width,
           child: Stack(
             children: <Widget>[
+              Users.isNotEmpty ?
               Container(
                 padding: EdgeInsets.only(top:145),
                 height: MediaQuery.of(context).size.height,
@@ -37,6 +39,10 @@ class _All_UsersState extends State<All_Users> {
                     itemBuilder: (BuildContext  context ,int index ){
                       return buildlist(context , index) ;
                     }),
+              ):Container(
+                child: Center(
+                  child: Text('No data'),
+                ),
               ),
               Container(
                 height: 120,
@@ -75,9 +81,10 @@ class _All_UsersState extends State<All_Users> {
   }
 
 
-  void getUserData(){
+  void getUserData() async{
     try{
-      databaseRef.collection('Users').getDocuments().then((QuerySnapshot snaps){
+      String mUiD = (await FirebaseAuth.instance.currentUser()).uid;
+      databaseRef.collection('Users').where('user_uid', isGreaterThan: mUiD).getDocuments().then((QuerySnapshot snaps){
         snaps.documents.forEach((mFun){
             Users.add(mFun.data);
 
@@ -131,7 +138,9 @@ class _All_UsersState extends State<All_Users> {
                         fontSize: 18),
                   ),
                 ),
-
+                SizedBox(
+                  width: 10,
+                ),
                 Row(
                   children: <Widget>[
                     Icon(
@@ -142,11 +151,11 @@ class _All_UsersState extends State<All_Users> {
                     SizedBox(
                       width: 5,
                     ),
-//                    Flexible(
-//                      child: Text(LawyerList[index]['description'],
-//                          style: TextStyle(
-//                              color: primary, fontSize: 13, letterSpacing: .3)),
-//                    ),
+                    Flexible(
+                      child:Users[index]['status'] == null? Text('No Details Given'):Text(Users[index]['status'],
+                          style: TextStyle(
+                              color: primary, fontSize: 13, letterSpacing: .3)),
+                    ),
                   ],
                 ),
               ],
