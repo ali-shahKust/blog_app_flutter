@@ -207,6 +207,17 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomePageLoader()));
     } catch (e) {
+
+
+      Fluttertoast.showToast(
+          msg: e.message,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIos: 1,
+          backgroundColor: Colors.grey.shade400,
+          textColor: Colors.black45,
+          fontSize: 16.0
+      );
       pr.hide().then((isHidden) {
         print(isHidden);
       });

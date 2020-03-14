@@ -19,9 +19,6 @@ class _HomePageLoaderState extends State<HomePageLoader> {
   Widget build(BuildContext context) {
 
     return new Scaffold(
-      appBar: AppBar(
-        title: Text('BlogoMo'),
-      ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         height: 50,

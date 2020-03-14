@@ -20,11 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "BlogoMo",
       home: LoginRegisterPage(),
-      theme: new ThemeData(
-        primarySwatch: Colors.blue
-      ),
     );
   }
 }
