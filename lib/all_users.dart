@@ -119,8 +119,8 @@ class _All_UsersState extends State<All_Users> {
               borderRadius: BorderRadius.circular(50),
               border: Border.all(width: 3, color: primary),
               image: DecorationImage(
-                  image: Users[index]['user_profile'] == null
-                      ? AssetImage('/images/profile.png')
+                  image: Users[index]['user_profile'] == ''
+                      ? AssetImage('images/profile.png')
                       :  NetworkImage(Users[index]['user_profile']),
                   fit: BoxFit.fill),
             ),

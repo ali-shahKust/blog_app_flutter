@@ -81,7 +81,7 @@ class _Profile_settingState extends State<Profile_setting> {
                           child: CircleAvatar(
                             radius: 50,
                             //  backgroundColor: Colors.white,
-                            backgroundImage: mDp == null
+                            backgroundImage: mDp == ''
                                 ? AssetImage('/images/profile.png')
                                 : NetworkImage(mDp),
 
