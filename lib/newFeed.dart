@@ -13,7 +13,7 @@ class _News_feedState extends State<News_feed> {
   final databaseRef = Firestore.instance;
   List<Map> Posts = [];
   final primary = Constant.appColor;
-
+  String Hello;
   @override
   void initState() {
     // TODO: implement initState
@@ -87,6 +87,7 @@ class _News_feedState extends State<News_feed> {
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
 
       child: Row(
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
