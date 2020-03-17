@@ -199,21 +199,7 @@ class _PostPageState extends State<_PostPage> {
     StorageReference ref = FirebaseStorage.instance.ref().child("Blog_Images/" +
         new DateTime.now().millisecondsSinceEpoch.toString()); //new
     StorageUploadTask uploadTask = ref.putFile(img);
-//    Uri downloadUrl = (await  uploadTask.onComplete.then((result) async {
-//
-//      Fluttertoast.showToast(
-//          msg: 'Picture Uploaded Successfully',
-//          toastLength: Toast.LENGTH_SHORT,
-//          gravity: ToastGravity.CENTER,
-//          timeInSecForIos: 1,
-//          backgroundColor: Colors.grey.shade300,
-//          textColor: Colors.black,
-//          fontSize: 16.0
-//      );
-//      setState(() {
-//
-//      });
-//    }));
+
     uploadTask.onComplete.then((result) async {
       pr.update(
         progress: 50.0,
@@ -231,7 +217,6 @@ class _PostPageState extends State<_PostPage> {
         print(isHidden);
       });
       url = await result.ref.getDownloadURL();
-
       Fluttertoast.showToast(
           msg: 'Picture Uploaded Successfully',
           toastLength: Toast.LENGTH_SHORT,
@@ -249,35 +234,13 @@ class _PostPageState extends State<_PostPage> {
   }
 
   void _addBlog(String title, String description, String imageUrl, String mUid) {
-//    print(googleSignIn.currentUser.displayName);
-//    print(googleSignIn.currentUser.id);
-//    print(title);
-//    print(imageUrl);
-//    print(description);
-
     reference.add({
-      'IMAGE': imageUrl,
-      'Title': title,
-      'DESCRIPTION': description,
+      'image': imageUrl,
+      'title': title,
+      'description': description,
       'uid': mUid,
       'user_name': mRef['user_name'],
     });
-//    Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (Builder)))
-//    Navigator.of(context).pushAndRemoveUntil(
-//        new MaterialPageRoute(
-//            builder: (BuildContext context) => new HomePage()),
-//        (Route route) => route == null);
-//    print("success");
-//    analytics.logEvent(name: 'post_blog');
-//    setState(() {
-//      _isLoading = false;
-//      _title.clear();
-//      _desc.clear();
-//      _isTitle = false;
-//      _isDesc = false;
-//      _isImage = false;
-//      _image = null;
-//    });
     Scaffold.of(context).showSnackBar(new SnackBar(
       content: new Text("Posted Successfully!"),
     ));
