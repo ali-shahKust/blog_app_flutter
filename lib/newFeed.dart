@@ -79,29 +79,55 @@ class _News_feedState extends State<News_feed> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        color: Colors.grey,
       ),
       width: double.infinity,
-      height: 400,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      height: 500,
+    //  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
 
-      child: Row(
+
+      child: Column(
 
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 270,
-            height: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(width: 3, color: primary),
-              image: DecorationImage(
-                  image: Posts[index]['image'] == ''
-                      ? AssetImage('images/profile.png')
-                      :  NetworkImage(Posts[index]['image']),
-                  fit: BoxFit.fill),
-            ),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                      image: Posts[index]['user_profile'] == ''
+                          ? AssetImage('images/profile.png')
+                          :  NetworkImage(Posts[index]['user_profile']),
+                      fit: BoxFit.fill),
+                ),
+              ),
+              SizedBox(width: 25,),
+              Container(
+                child: Text(Posts[index]['user_name'] == ''
+                    ? 'No Name'
+                    : Posts[index]['user_name'],),
+              )
+            ],
+          ),
+          SizedBox(height: 10,),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 360,
+                height: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  image: DecorationImage(
+                      image: Posts[index]['image'] == ''
+                          ? AssetImage('images/profile.png')
+                          :  NetworkImage(Posts[index]['image']),
+                      fit: BoxFit.fill),
+                ),
+              ),
+            ],
           ),
         ],
       ),

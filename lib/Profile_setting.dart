@@ -240,7 +240,7 @@ class _Profile_settingState extends State<Profile_setting> {
       mName = mRef['user_name'];
       mStatus = mRef['status'];
       mPhoneNum = mRef['user_phone'];
-      mDp = mRef['user_dp'];
+      mDp = mRef['user_profile'];
 
 
       print('mref data $mRef');
@@ -354,7 +354,7 @@ class _Profile_settingState extends State<Profile_setting> {
       );
       await databaseReference.collection("Users").document(mUid).updateData({
 
-        'user_dp': url,
+        'user_profile': url,
       });
       setState(() {
 

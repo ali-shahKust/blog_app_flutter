@@ -240,6 +240,7 @@ class _PostPageState extends State<_PostPage> {
       'description': description,
       'uid': mUid,
       'user_name': mRef['user_name'],
+      'user_profile': mRef['user_profile']
     });
     Scaffold.of(context).showSnackBar(new SnackBar(
       content: new Text("Posted Successfully!"),
